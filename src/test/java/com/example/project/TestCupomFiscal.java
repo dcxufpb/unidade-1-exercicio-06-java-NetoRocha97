@@ -5,68 +5,69 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+
 public class TestCupomFiscal {
 
-	private String BREAK = System.lineSeparator();
+	private String BRK = System.lineSeparator();
 	
-	private String TEXTO_ESPERADO_LOJA_COMPLETA = "Loja 1" + BREAK +
-			"Log 1, 10 C1" + BREAK +
-			"Bai 1 - Mun 1 - E1" + BREAK +
-			"CEP:11111-111 Tel (11) 1111-1111" + BREAK +
-			"Obs 1" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_LOJA_COMPLETA = "Loja 1" + BRK +
+			"Log 1, 10 C1" + BRK +
+			"Bai 1 - Mun 1 - E1" + BRK +
+			"CEP:11111-111 Tel (11) 1111-1111" + BRK +
+			"Obs 1" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
-	private String TEXTO_ESPERADO_SEM_NUMERO = "Loja 1" + BREAK +
-			"Log 1, s/n C1" + BREAK +
-			"Bai 1 - Mun 1 - E1" + BREAK +
-			"CEP:11111-111 Tel (11) 1111-1111" + BREAK +
-			"Obs 1" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_SEM_NUMERO = "Loja 1" + BRK +
+			"Log 1, s/n C1" + BRK +
+			"Bai 1 - Mun 1 - E1" + BRK +
+			"CEP:11111-111 Tel (11) 1111-1111" + BRK +
+			"Obs 1" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
-	private String TEXTO_ESPERADO_SEM_COMPLEMENTO = "Loja 1" + BREAK +
-			"Log 1, 10" + BREAK +
-			"Bai 1 - Mun 1 - E1" + BREAK +
-			"CEP:11111-111 Tel (11) 1111-1111" + BREAK +
-			"Obs 1" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_SEM_COMPLEMENTO = "Loja 1" + BRK +
+			"Log 1, 10" + BRK +
+			"Bai 1 - Mun 1 - E1" + BRK +
+			"CEP:11111-111 Tel (11) 1111-1111" + BRK +
+			"Obs 1" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
-	private String TEXTO_ESPERADO_SEM_BAIRRO = "Loja 1" + BREAK +
-			"Log 1, 10 C1" + BREAK +
-			"Mun 1 - E1" + BREAK +
-			"CEP:11111-111 Tel (11) 1111-1111" + BREAK +
-			"Obs 1" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_SEM_BAIRRO = "Loja 1" + BRK +
+			"Log 1, 10 C1" + BRK +
+			"Mun 1 - E1" + BRK +
+			"CEP:11111-111 Tel (11) 1111-1111" + BRK +
+			"Obs 1" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
-	private String TEXTO_ESPERADO_SEM_CEP = "Loja 1" + BREAK +
-			"Log 1, 10 C1" + BREAK +
-			"Bai 1 - Mun 1 - E1" + BREAK +
-			"Tel (11) 1111-1111" + BREAK +
-			"Obs 1" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_SEM_CEP = "Loja 1" + BRK +
+			"Log 1, 10 C1" + BRK +
+			"Bai 1 - Mun 1 - E1" + BRK +
+			"Tel (11) 1111-1111" + BRK +
+			"Obs 1" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
-	private String TEXTO_ESPERADO_SEM_TELEFONE = "Loja 1" + BREAK +
-			"Log 1, 10 C1" + BREAK +
-			"Bai 1 - Mun 1 - E1" + BREAK +
-			"CEP:11111-111" + BREAK +
-			"Obs 1" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_SEM_TELEFONE = "Loja 1" + BRK +
+			"Log 1, 10 C1" + BRK +
+			"Bai 1 - Mun 1 - E1" + BRK +
+			"CEP:11111-111" + BRK +
+			"Obs 1" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
-	private String TEXTO_ESPERADO_SEM_OBSERVACAO = "Loja 1" + BREAK +
-			"Log 1, 10 C1" + BREAK +
-			"Bai 1 - Mun 1 - E1" + BREAK +
-			"CEP:11111-111 Tel (11) 1111-1111" + BREAK +
-			"" + BREAK +
-			"CNPJ: 11.111.111/1111-11" + BREAK +
-			"IE: 123456789" + BREAK;
+	private String TEXTO_ESPERADO_SEM_OBSERVACAO = "Loja 1" + BRK +
+			"Log 1, 10 C1" + BRK +
+			"Bai 1 - Mun 1 - E1" + BRK +
+			"CEP:11111-111 Tel (11) 1111-1111" + BRK +
+			"" + BRK +
+			"CNPJ: 11.111.111/1111-11" + BRK +
+			"IE: 123456789" + BRK;
 
 	@BeforeAll
-	public void setup() {
+	public static void setup() {
 		CupomFiscal.NOME_LOJA = "Loja 1";
 		CupomFiscal.LOGRADOURO = "Log 1";
 		CupomFiscal.NUMERO = 10;
@@ -90,21 +91,21 @@ public class TestCupomFiscal {
 	public void nomeVazio() {
 		CupomFiscal.NOME_LOJA = "";
 		verificarCampoObrigatorio("O campo nome da loja é obrigatório");
-		CupomFiscal.NOME_LOJA = "Arcos Dourados Com. de Alimentos LTDA";
+		CupomFiscal.NOME_LOJA = "Loja 1";
 	}
 
 	@Test
 	public void logradouroVazio() {
 		CupomFiscal.LOGRADOURO = "";
 		verificarCampoObrigatorio("O campo logradouro do endereço é obrigatório");
-		CupomFiscal.LOGRADOURO = "Av. Projetada Leste";
+		CupomFiscal.LOGRADOURO = "Log 1";
 	}
 
 	@Test
 	public void numeroZero() {
 		CupomFiscal.NUMERO = 0;
 		rodarTestarRetorno(TEXTO_ESPERADO_SEM_NUMERO);
-		CupomFiscal.NUMERO = 500;
+		CupomFiscal.NUMERO = 10;
 	}
 
 	@Test
@@ -125,14 +126,14 @@ public class TestCupomFiscal {
 	public void municipioVazio() {
 		CupomFiscal.MUNICIPIO = "";
 		verificarCampoObrigatorio("O campo município do endereço é obrigatório");
-		CupomFiscal.MUNICIPIO = "Campinas";
+		CupomFiscal.MUNICIPIO = "Mun 1";
 	}
 
 	@Test
 	public void estadoVazio() {
 		CupomFiscal.ESTADO = "";
 		verificarCampoObrigatorio("O campo estado do endereço é obrigatório");
-	    CupomFiscal.ESTADO = "SP";
+	    CupomFiscal.ESTADO = "E1";
 	}
 
 	@Test
@@ -160,36 +161,41 @@ public class TestCupomFiscal {
 	public void cnpjVazio() {
 		CupomFiscal.CNPJ = "";
 		verificarCampoObrigatorio("O campo CNPJ da loja é obrigatório");
-	    CupomFiscal.CNPJ = "42.591.651/0797-34";
+	    CupomFiscal.CNPJ = "11.111.111/1111-11";
 	}
 
 	@Test
 	public void inscricaoEstadualVazia() {
 		CupomFiscal.INSCRICAO_ESTADUAL = "";
 		verificarCampoObrigatorio("O campo inscrição estadual da loja é obrigatório");
-		CupomFiscal.INSCRICAO_ESTADUAL = "244.898.500.113";
+		CupomFiscal.INSCRICAO_ESTADUAL = "123456789";
 	}
 	
 	@Test
 	public void exercicio02_Customizado() {
 		//Defina seus próprios valores para as variáveis a seguir 
-		CupomFiscal.NOME_LOJA = "";
-		CupomFiscal.LOGRADOURO = "";
-		CupomFiscal.NUMERO = 0;
-		CupomFiscal.COMPLEMENTO = "";
-		CupomFiscal.BAIRRO = "";
-		CupomFiscal.MUNICIPIO = "";
-		CupomFiscal.ESTADO = "";
-		CupomFiscal.CEP = "";
-		CupomFiscal.TELEFONE = "";
-		CupomFiscal.OBSERVACAO = "";
-		CupomFiscal.CNPJ = "";
-		CupomFiscal.INSCRICAO_ESTADUAL = "";
+		CupomFiscal.NOME_LOJA = "Loja CRVG";
+		CupomFiscal.LOGRADOURO = "R. Gen. Almério de Moura";
+		CupomFiscal.NUMERO = 131;
+		CupomFiscal.COMPLEMENTO = "Estádio";
+		CupomFiscal.BAIRRO = "São Januário";
+		CupomFiscal.MUNICIPIO = "Rio de Janeiro";
+		CupomFiscal.ESTADO = "RJ";
+		CupomFiscal.CEP = "20921060";
+		CupomFiscal.TELEFONE = "(21) 91898-1927";
+		CupomFiscal.OBSERVACAO = "Obs 1";
+		CupomFiscal.CNPJ = "12.111.333/12133-12";
+		CupomFiscal.INSCRICAO_ESTADUAL = "123.456.789.000";
 		
 		//E atualize o texto esperado abaixo
-		rodarTestarRetorno("" + BREAK);
+		rodarTestarRetorno("Loja CRVG" + BRK + 
+		"R. Gen. Almério de Moura, 131 Estádio" + BRK + 
+		"São Januário - Rio de Janeiro - RJ" + BRK + 
+		"CEP:20921060 Tel (21) 91898-1927" + BRK + 
+		"Obs 1" + BRK + 
+		"CNPJ: 12.111.333/12133-12" + BRK + 
+		"IE: 123.456.789.000" + BRK);
 	}
-
 	private void rodarTestarRetorno(String expected) {
 
 		// action
